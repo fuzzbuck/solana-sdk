@@ -30,6 +30,7 @@ mod vote_state_deserialize;
 #[cfg(any(target_os = "solana", feature = "bincode"))]
 use vote_state_deserialize::deserialize_vote_state_into;
 pub mod vote_state_versions;
+
 pub use vote_state_versions::*;
 
 // Maximum number of votes to keep around, tightly coupled with epoch_schedule::MINIMUM_SLOTS_PER_EPOCH
@@ -714,6 +715,7 @@ impl VoteState {
         next_vote_slot: Slot,
         epoch: Epoch,
         current_slot: Slot,
+        pop_expired: bool,
     ) {
         // Ignore votes for slots earlier than we already have votes for
         if self
@@ -723,7 +725,9 @@ impl VoteState {
             return;
         }
 
-        self.pop_expired_votes(next_vote_slot);
+        if pop_expired {
+            self.pop_expired_votes(next_vote_slot);
+        }
 
         let landed_vote = LandedVote {
             latency: Self::compute_vote_latency(next_vote_slot, current_slot),
