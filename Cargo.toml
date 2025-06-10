@@ -337,3 +337,4 @@ solana-instruction = { path = "instruction" }
 solana-program-error = { path = "program-error" }
 solana-pubkey = { path = "pubkey" }
 solana-sysvar-id = { path = "sysvar-id" }
+solana-message = { path = "message" }
