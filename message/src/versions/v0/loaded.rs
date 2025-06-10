@@ -8,6 +8,7 @@ use {
 };
 
 /// Combination of a version #0 message and its loaded addresses
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, Clone, Eq, PartialEq)]
 pub struct LoadedMessage<'a> {
     /// Message which loaded a collection of lookup table addresses

@@ -1,3 +1,6 @@
+#[cfg(feature = "serde")]
+use serde_derive::{Deserialize, Serialize};
+
 #[deprecated(
     since = "2.1.0",
     note = "Use solana_transaction_error::SanitizeMessageError instead"
@@ -27,6 +30,7 @@ static_assertions::const_assert_eq!(
     solana_nonce::NONCED_TX_MARKER_IX_INDEX
 );
 
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[derive(Debug, Clone, Eq, PartialEq)]
 pub struct LegacyMessage<'a> {
     /// Legacy message
@@ -79,6 +83,7 @@ impl LegacyMessage<'_> {
 
 /// Sanitized message of a transaction.
 #[derive(Debug, Clone, Eq, PartialEq)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub enum SanitizedMessage {
     /// Sanitized legacy message
     Legacy(LegacyMessage<'static>),
