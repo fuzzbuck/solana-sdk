@@ -340,5 +340,3 @@ solana-sysvar-id = { path = "sysvar-id" }
 solana-message = { path = "message" }
 solana-transaction-error = { path = "transaction-error" }
 solana-transaction-context = { path = "transaction-context" }
-solana-transaction = { path = "transaction" }
-
