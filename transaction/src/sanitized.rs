@@ -1,3 +1,5 @@
+use serde_derive::{Deserialize, Serialize};
+
 use {
     crate::versioned::{sanitized::SanitizedVersionedTransaction, VersionedTransaction},
     solana_hash::Hash,
@@ -24,7 +26,7 @@ use {
 pub const MAX_TX_ACCOUNT_LOCKS: usize = 128;
 
 /// Sanitized transaction and the hash of its message
-#[derive(Debug, Clone, Eq, PartialEq)]
+#[derive(Debug, Clone, Eq, PartialEq, Serialize, Deserialize)]
 pub struct SanitizedTransaction {
     message: SanitizedMessage,
     message_hash: Hash,
